@@ -4,7 +4,7 @@ import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import IconButton from 'material-ui/IconButton'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import Home from 'material-ui/svg-icons/content/add-circle'
+import MenuDrawer from './MenuDrawer'
 import Menu from './IconMenu'
 import './App.css'
 
@@ -15,10 +15,10 @@ const App = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
     <AppBar
       title="Readable"
-      iconElementLeft={<IconButton><Home /></IconButton>}
+      iconElementLeft={<IconButton><MenuDrawer /></IconButton>}
       iconElementRight={<Menu />}
     />
-    <div class="bottom">
+    <div className="bottom">
       <FloatingActionButton secondary={true}>
         <ContentAdd />
       </FloatingActionButton>
