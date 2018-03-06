@@ -1,7 +1,7 @@
 import { create } from 'apisauce'
 
 const api = create({
-    baseURL: 'http://localhost:3001/posts',
+    baseURL: 'http://localhost:3001',
     headers: {
         'Authorization': 'stewartsmall'
     }

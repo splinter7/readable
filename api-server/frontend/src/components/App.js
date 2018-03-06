@@ -5,11 +5,12 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Navigation from './Navigation'
 import '../css/App.css'
 import { connect } from "react-redux"
-import {getAllPosts} from '../actions/postsActions'
+import {getPosts} from '../actions/postsActions'
 
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 
+import PostList from './PostList'
 
 class App extends Component {
 
@@ -26,13 +27,13 @@ class App extends Component {
   componentDidMount() {
     const {fetchPosts, dispatch} = this.props 
     this.setState({
-      posts: fetchPosts(dispatch)
+      posts: dispatch(fetchPosts())
     })
   }
 
   handleClick = () => {
     const {fetchPosts, dispatch} = this.props    
-    fetchPosts(dispatch)
+    dispatch(fetchPosts())
     this.setState({
       posts: this.props.posts
     })    
@@ -49,21 +50,19 @@ class App extends Component {
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
         <div>
           
-          <Navigation />         
-            <section>        
-              {posts.map((post, index) => (
-                <div key={index}>
-                  <h3>{post.title}</h3>
-                  <p>{post.body}</p>
-                </div>
-              ))}
-            </section> 
+          <Navigation /> 
+
+          <br />
+
+          <section>        
+            <PostList posts={posts} />
+          </section> 
           
-          <div className="bottom">
+          <section className="bottom">
             <FloatingActionButton secondary={true} onClick={() => this.handleClick()}>
               <ContentAdd />
             </FloatingActionButton>
-          </div>   
+          </section>   
 
         </div>     
       </MuiThemeProvider>
@@ -74,7 +73,7 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     posts: state,
-    fetchPosts: getAllPosts
+    fetchPosts: getPosts
   }
 }
 
