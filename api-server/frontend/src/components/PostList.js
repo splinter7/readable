@@ -17,7 +17,7 @@ class PostList extends Component {
     
     convertToReadableDate(timeStamp_value){
         let theDate = new Date(timeStamp_value);
-        return (dateFormat(theDate, "mmm dd, yyyy"));
+        return ("Posted: "+dateFormat(theDate, "mmm dd, yyyy"));
     }
 
     render() {

@@ -1,3 +1,2 @@
-import postsReducer from './postsReducer'
-
-export default postsReducer
+export { default as posts } from './postsReducer'
+export { default as pages } from './pageReducer'
