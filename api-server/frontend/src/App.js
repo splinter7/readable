@@ -65,7 +65,7 @@ class App extends Component {
 
           <br />
 
-          <Route path="/" exact render={() => <Home posts={posts} />} />
+          <Route path="/" exact render={() => <Home />} />
 
           <Route path="/addpost" exact render={() => <AddPost />} />
           

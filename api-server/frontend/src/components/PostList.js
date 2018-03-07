@@ -7,6 +7,7 @@ import ActionDescription from 'material-ui/svg-icons/action/description'
 import {blue500} from 'material-ui/styles/colors'
 import Divider from 'material-ui/Divider'
 import dateFormat from 'dateformat'
+import { connect } from "react-redux"
 
 const style = {
   width: "95%",
@@ -43,4 +44,10 @@ class PostList extends Component {
     }
 }
 
-export default PostList
+function mapStateToProps(state) {
+    return {
+        posts: state.posts,
+    }
+}
+
+export default connect(mapStateToProps)(PostList)
