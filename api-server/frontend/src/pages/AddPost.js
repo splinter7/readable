@@ -3,6 +3,8 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
+import {connect} from 'react-redux'
+import {getCategories} from '../actions/categoryActions'
 
 const style = {
     width: "75%",
@@ -11,15 +13,34 @@ const style = {
 }
 
 class AddPost extends Component {
-    state = {
-        value: 1,
-    };
-    
-    handleChange(){
-        console.log('changed')
+    constructor(props) {
+        super(props);
+  
+        this.state = {
+          value: ''
+        };
+  
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
     }
 
-    render() {
+    componentDidMount(){
+        const {dispatch, getCategories} = this.props
+        dispatch(getCategories());
+    }
+    
+    handleCategoryChange(event){
+        this.setState(
+            {value: event.target.innerText}
+        )
+    }
+
+    render() {        
+        const {categories} = this.props
+
+        if(!categories) {
+            return <div>Loading...</div>
+        }
+
         return (            
             <Paper zDepth={1} style={style}>
 
@@ -44,12 +65,13 @@ class AddPost extends Component {
 
                 <SelectField
                     floatingLabelText="Category"
+                    floatingLabelFixed={true}
                     value={this.state.value}
-                    onChange={this.handleChange}
+                    onChange={this.handleCategoryChange}
                 >
-                    <MenuItem value={1} primaryText="React" />
-                    <MenuItem value={2} primaryText="Redux" />
-                    <MenuItem value={3} primaryText="Udacity" />
+                    {categories.map((category, i) => (
+                        <MenuItem key={i} value={category.name} primaryText={category.name} />
+                    ))}
                 </SelectField>
 
             </Paper>
@@ -57,4 +79,11 @@ class AddPost extends Component {
     }
 }
 
-export default AddPost
+function mapStateToProps(state) {
+    return {
+        categories: state.categories,
+        getCategories: getCategories
+    }
+}
+
+export default connect(mapStateToProps)(AddPost)

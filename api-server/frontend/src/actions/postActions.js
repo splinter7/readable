@@ -9,7 +9,7 @@ export async function getAllPosts (dispatch) {
     }
 }
 
-// Action creater
+// Action creators
 export function fetchAction(posts){
     return { 
         type: FETCH_POSTS,

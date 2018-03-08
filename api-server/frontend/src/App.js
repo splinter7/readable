@@ -5,7 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Navigation from './components/Navigation'
 import './css/App.css'
 import { connect } from "react-redux"
-import {getPosts} from './actions/postsActions'
+import {getPosts} from './actions/postActions'
 
 import {goToHomeScreen, goToPosts} from './actions/pageActions'
 
@@ -51,7 +51,6 @@ class App extends Component {
   render(){    
     const {posts} = this.props
     const {currentPage} = this.state
-    console.log(currentPage)
 
     if(!posts) {
       return <div>Loading...</div>

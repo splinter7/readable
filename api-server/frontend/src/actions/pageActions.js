@@ -2,7 +2,7 @@
 const GO_HOME = "GO_HOME"
 const POST_ADD = "POST_ADD"
 
-// Action creaters
+// Action creators
 export function goToHomeScreen() {
     return{
         type: GO_HOME,
