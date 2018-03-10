@@ -1,7 +1,4 @@
 import React, {Component} from 'react'
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Navigation from './components/Navigation'
 import './css/App.css'
 import { connect } from "react-redux"
@@ -9,9 +6,14 @@ import {getPosts} from './actions/postActions'
 
 import {goToHomeScreen, goToPosts} from './actions/pageActions'
 
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentAdd from 'material-ui/svg-icons/content/add'
-import ContentBack from 'material-ui/svg-icons/navigation/arrow-back'
+// import FloatingActionButton from 'material-ui/FloatingActionButton'
+// import ContentAdd from 'material-ui/svg-icons/content/add'
+// import ContentBack from 'material-ui/svg-icons/navigation/arrow-back'
+// import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+// import getMuiTheme from 'material-ui/styles/getMuiTheme'
+
+import { Button } from 'react-md'
 
 import {Route} from 'react-router-dom'
 import Home from './pages/Home'
@@ -57,7 +59,7 @@ class App extends Component {
     }
 
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+      
         <div>
           
           <Navigation /> 
@@ -69,13 +71,13 @@ class App extends Component {
           <Route path="/addpost" exact render={() => <AddPost />} />
           
           <section className="bottom">
-            <FloatingActionButton secondary={true} onClick={() => this.handleClick(currentPage)}>
-              {(currentPage === '/') ? <ContentAdd /> : <ContentBack />}
-            </FloatingActionButton>
+            <Button onClick={() => this.handleClick(currentPage)} floating secondary swapTheming>
+              {(currentPage === '/') ? "add" : "arrow_back"}
+            </Button>            
           </section>   
 
         </div>     
-      </MuiThemeProvider>
+      
     )
   }  
 }
