@@ -116,7 +116,7 @@ class AddPost extends Component {
                                 type={SelectField}
                                 label="Category"
                                 id="floatingCenterTitle"
-                                style={{width:"100%"}}
+                                style={{width:"30%"}}
                                 menuItems={categories.map((category) => (category.name))}
                                 noMeta
                                 error={!!errors.category}

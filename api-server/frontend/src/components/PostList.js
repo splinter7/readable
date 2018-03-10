@@ -1,14 +1,7 @@
 import React, {Component} from 'react'
 import dateFormat from 'dateformat'
 import { connect } from "react-redux"
-
-// import Paper from 'material-ui/Paper';
-// import {List, ListItem} from 'material-ui/List';
-// import ActionInfo from 'material-ui/svg-icons/action/info';
-// import Avatar from 'material-ui/Avatar'
-// import ActionDescription from 'material-ui/svg-icons/action/description'
-// import {blue500} from 'material-ui/styles/colors'
-// import Divider from 'material-ui/Divider'
+import {goToPost} from '../actions/pageActions'
 
 import {Avatar,
     Divider,
@@ -31,6 +24,12 @@ class PostList extends Component {
         return ("Posted: "+dateFormat(theDate, "mmm dd, yyyy"));
     }
 
+    handleClick(id){
+        const {dispatch, goToPost} = this.props
+        dispatch(goToPost(id))
+        window.location.href = '/post/'+id
+    }
+
     render() {
         const {posts} = this.props
         const rowLen = posts.length;
@@ -44,6 +43,7 @@ class PostList extends Component {
                                 rightIcon={<InfoIcon />}
                                 primaryText={post.title}
                                 secondaryText={this.convertToReadableDate(post.timestamp)}
+                                onClick={() => this.handleClick(post.id)}
                             />  
                             {(rowLen !== index+1) && (<Divider />)}
                         </span>                                      
@@ -57,6 +57,7 @@ class PostList extends Component {
 function mapStateToProps(state) {
     return {
         posts: state.posts,
+        goToPost: goToPost
     }
 }
 

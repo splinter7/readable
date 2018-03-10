@@ -5,19 +5,12 @@ import { connect } from "react-redux"
 import {getPosts} from './actions/postActions'
 
 import {goToHomeScreen, goToPosts} from './actions/pageActions'
-
-// import FloatingActionButton from 'material-ui/FloatingActionButton'
-// import ContentAdd from 'material-ui/svg-icons/content/add'
-// import ContentBack from 'material-ui/svg-icons/navigation/arrow-back'
-// import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-// import getMuiTheme from 'material-ui/styles/getMuiTheme'
-
 import { Button } from 'react-md'
 
 import {Route} from 'react-router-dom'
 import Home from './pages/Home'
 import AddPost from './pages/AddPost'
+import ViewPost from './pages/ViewPost'
 
 class App extends Component {
 
@@ -69,9 +62,11 @@ class App extends Component {
           <Route path="/" exact render={() => <Home />} />
 
           <Route path="/addpost" exact render={() => <AddPost />} />
+
+          <Route path="/post/:id" render={(props) => <ViewPost {...props} />} />
           
           <section className="bottom">
-            <Button onClick={() => this.handleClick(currentPage)} floating secondary swapTheming>
+            <Button onClick={() => this.handleClick(currentPage)} icon primary swapTheming>
               {(currentPage === '/') ? "add" : "arrow_back"}
             </Button>            
           </section>   

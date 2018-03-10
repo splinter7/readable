@@ -1,6 +1,6 @@
-
 const GO_HOME = "GO_HOME"
 const POST_ADD = "POST_ADD"
+const POST_VIEW = "POST_VIEW"
 
 // Action creators
 export function goToHomeScreen() {
@@ -16,3 +16,11 @@ export function goToPosts() {
         payload: '/addpost'
     }
 }
+
+export function goToPost(id) {
+    return{
+        type: POST_VIEW,
+        payload: `/post/${id}`
+    }
+}
+
