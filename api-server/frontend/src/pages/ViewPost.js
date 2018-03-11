@@ -22,7 +22,7 @@ class ViewPost extends Component{
   
         this.state = {            
           votes: 0
-        };
+        }
   
         this.upVote = this.upVote.bind(this)
         this.downVote = this.downVote.bind(this);
